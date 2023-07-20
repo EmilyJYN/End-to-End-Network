@@ -18,16 +18,17 @@ void get_URL( const string& host, const string& path )
   // Then you'll need to print out everything the server sends back,
   // (not just one call to read() -- everything) until you reach
   // the "eof" (end of file).
-  TCPSocket socket;
+  
+  TCPSocket socket; // HTTP is based on TCP
   string str;
-  socket.connect(Address(host, "http"));
+  socket.connect(Address(host, "http")); // member func of Socket in socket.hh
   string data_send = "GET "+ path + " HTTP/1.1\r\n"+"Host: " + host+"\r\n"+"Connection: close\r\n\r\n";
-  socket.write(data_send);
-  while(!socket.eof()){
-    socket.read(str);
+  socket.write(data_send); //member func of FileDescriptor in file_descriptor.hh
+  while(!socket.eof()){ //member func of FileDescriptor in file_descriptor.hh
+    socket.read(str); //member func of FileDescriptor in file_descriptor.hh
     cout << str;
   }
-  socket.close();
+  socket.close(); //member func of FileDescriptor in file_descriptor.hh
 
   cerr << "Function called: get_URL(" << host << ", " << path << ")\n";
   cerr << "Warning: get_URL() has not been implemented yet.\n";
