@@ -56,7 +56,7 @@ string_view Reader::peek() const
 bool Reader::is_finished() const
 {
   // Your code here.
-  return {close_ && (buffer_.size() == 0)};
+  return {close_ && (buffer_.size() == 0)}; // either closed or empty
 }
 
 bool Reader::has_error() const
