@@ -16,13 +16,13 @@ void Reassembler::insert( uint64_t first_index, string data, bool is_last_substr
     bytes_pending_++;
   }
 
-  ostringstream oss;
+  ostringstream assembled;
   while (unassembled_.contains(ack_)) {
-    oss << unassembled_[ack_];
+    assembled << unassembled_[ack_];
     bytes_pending_--;
     ack_++;
   }
-  string const str = oss.str();
+  string const str = assembled.str();
   if (!str.empty()) {
     output.push(str);
   }
